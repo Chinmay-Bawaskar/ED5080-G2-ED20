@@ -1,0 +1,78 @@
+/*
+ 
+6. Combine various intensities of R, G and B and get different colours 
+
+
+*/
+// the PWM pin the LED is attached to
+int led1 = 3;
+int led2 = 5;
+int led3 = 6;
+int INled1 = 7;
+int INled2 = 8;
+int INled3 = 9;
+// how bright the LED is
+int brightness1 = 0;
+int brightness2 = 0;
+int brightness3 = 0;
+// how many points to fade the LED by
+int fadeAmount1 = 5;
+int fadeAmount2 = 5;
+int fadeAmount3 = 5;
+int i=0;
+int turnon1=0;
+int turnon2=0;
+int turnon3=0;
+
+// the setup routine runs once when you press reset:
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(INled1, INPUT_PULLUP);
+  pinMode(INled2, INPUT_PULLUP);
+  pinMode(INled3, INPUT_PULLUP);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  turnon1=1-digitalRead(INled1);
+  turnon2=1-digitalRead(INled2);
+  turnon3=1-digitalRead(INled3);
+  analogWrite(led1, LOW);
+  analogWrite(led2, LOW);
+  analogWrite(led3, LOW);
+  if(turnon1==1){ 
+    analogWrite(led1, brightness1);
+      brightness1 = brightness1 + fadeAmount1;
+ 
+    if (brightness1 <= 0 || brightness1 >= 255) 
+    {
+      fadeAmount1 = -fadeAmount1;
+    }}
+   
+    
+ if(turnon2==1){analogWrite(led2, brightness2);
+  brightness2 = brightness2 + fadeAmount2;  
+    
+    if (brightness2 <= 0 || brightness2 >= 255) 
+    {
+      fadeAmount2 = -fadeAmount2;
+    }}  
+   
+    
+   
+    if(turnon3==1){analogWrite(led3, brightness3);
+    brightness3 = brightness3 + fadeAmount3;
+    if (brightness3 <= 0 || brightness3 >= 255) 
+    {
+      fadeAmount3 = -fadeAmount3;
+    }}
+    
+    
+   
+    
+    
+  // wait for 30 milliseconds to see the dimming effect
+  delay(30);
+}
