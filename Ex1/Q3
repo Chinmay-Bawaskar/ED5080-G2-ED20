@@ -1,0 +1,22 @@
+/*
+  5. Vary the intensity of R, G and B individually in RGB LED connected in pins 3, 5 and 6
+(PWM pins) 
+
+
+*/
+int buttonState = 0; 
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+
+  pinMode(7, INPUT_PULLUP);//seeting up input pin
+  pinMode(13,OUTPUT);//setting up output pin
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  buttonState = digitalRead(7);//reading button status
+                   
+  digitalWrite(13,1-buttonState);//turn led on with reveresed button state     
+                      
+}
